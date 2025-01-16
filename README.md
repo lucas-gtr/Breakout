@@ -24,17 +24,19 @@ The project is organized into distinct modules to ensure clarity and maintainabi
 - **Input/**
   - Manages user input
   - Decoupled from both game logic and rendering
+ 
+- **Custom Vector and Matrix management**
+  - Developed a custom library for my own vector and matrix management.
+  - The library provides essential mathematical operations for 2D transformations, such as scaling, rotation, and translation, necessary for handling game object movements and physics.
 
 ## Prerequisites
 - **C++17 or later**
-- **CMake (version 3.16 or later)**
 - **OpenGL development environment**
 
 ## Build and Run Instructions
 *To be completed*
 
 ## Future Improvements
-- Implement particle system when the ball is moving
 - Impelemnt bonus and malus that randomly spawn for the player
 - Implement sound effects and music
 - Add a graphical user interface for selecting levels and game settings
