@@ -1,6 +1,6 @@
 #pragma once
 
-#include "InputInterface.h"
+#include "../InputInterface.h"
 
 class InputManager {
 protected:

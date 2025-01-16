@@ -29,4 +29,14 @@ OpenGL_Sprite::OpenGL_Sprite(const std::string& texture_path, const vec2& size) 
   glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArray(0);
+  glDeleteBuffers(1, &VBO);
+  
+  std::cout << "OpenGL VAO (ID=" << m_VAO << ") generated!" << '\n';
+}
+
+OpenGL_Sprite::~OpenGL_Sprite() {
+  delete m_texture;
+  glBindVertexArray(0);
+  std::cout << "Deleting OpenGL VAO (ID=" << m_VAO << ")..." << '\n';
+  glDeleteVertexArrays(1, &m_VAO);
 }

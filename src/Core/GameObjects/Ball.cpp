@@ -20,7 +20,7 @@ void Ball::InvertVelocity(const int direction) {
   m_velocity[direction] *= -1;
 }
 
-vec2 Ball::velocity() const {
+const vec2& Ball::velocity() const {
   return m_velocity;
 }
 

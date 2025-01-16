@@ -7,7 +7,14 @@
 template <size_t N>
 class vec {
 public:
+  static_assert(N >= 2 && N <= 4, "vec only supports dimensions 2, 3, or 4");
+  
   std::array<float, N> values;
+  
+  float& x = values[0];
+  float& y = values[1];
+  float& z = values[2];
+  float& w = values[3];
 
   vec(float value = 0.0f) {
     values.fill(value);

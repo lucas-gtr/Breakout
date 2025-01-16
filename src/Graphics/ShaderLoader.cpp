@@ -26,6 +26,6 @@ ShaderData ShaderLoader::Load(std::string shader_path) {
     }
   }
   
-  std::cout << "Shader from " << shader_path << " generated!" << '\n';
+  std::cout << "Shader from " << shader_path << " loaded!" << '\n';
   return shader_data;
 }

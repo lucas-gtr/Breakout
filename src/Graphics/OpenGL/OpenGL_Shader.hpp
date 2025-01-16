@@ -47,6 +47,7 @@ public:
                   const unsigned int v2, const unsigned int v3);
   void SetUniform(const std::string &name, const float v0, const float v1, const float v2, const float v3);
   
+  void SetUniform(const std::string &name, const vec2& vec);
   void SetUniform(const std::string &name, const vec3& vec);
   void SetUniform(const std::string &name, const vec4& vec);
   

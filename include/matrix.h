@@ -3,6 +3,7 @@
 #include <array>
 #include <iostream>
 #include <iomanip>
+
 #include "vector.h"
 
 template <size_t Rows, size_t Cols = Rows>

@@ -18,4 +18,5 @@ public:
   const unsigned int texture() const { return m_texture->ID(); }
   const unsigned int VAO() const { return m_VAO; }
 
+  ~OpenGL_Sprite();
 };

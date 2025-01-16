@@ -11,13 +11,14 @@ OpenGL_Shader::OpenGL_Shader(const std::string& vertex_shader, const std::string
   glDeleteShader(vertex);
   glDeleteShader(fragment);
   
-  std::cout << "OpenGL shader created!" << '\n';
+  std::cout << "OpenGL shader (ID=" << m_ID << ") generated!" << '\n';
 }
 
 unsigned int OpenGL_Shader::CompileShader(GLenum type, const char* source) {
   unsigned int shader = glCreateShader(type);
   if (shader == 0) {
-    std::cerr << "Erreur : Échec de création de shader." << std::endl;
+    std::string shader_type = (type == GL_VERTEX_ARRAY) ? "vertex" : "fragment";
+    std::cerr << "Failed to create the " << type << " shader!" << std::endl;
     return 0;
   }
   
@@ -79,7 +80,9 @@ bool OpenGL_Shader::CheckCompileErrors(unsigned int shader, const std::string& t
 }
 
 OpenGL_Shader::~OpenGL_Shader() {
-  
+  glUseProgram(0);
+  std::cout << "Deleting OpenGL shader (ID=" << m_ID << ")..." << '\n';
+  glDeleteProgram(m_ID);
 }
 
 void OpenGL_Shader::Bind(){
@@ -156,6 +159,10 @@ void OpenGL_Shader::SetUniform(const std::string &name, const unsigned int v0, c
 
 void OpenGL_Shader::SetUniform(const std::string &name, const float v0, const float v1, const float v2, const float v3) {
   glUniform4f(GetUniformLocation(name), v0, v1, v2, v3);
+}
+
+void OpenGL_Shader::SetUniform(const std::string &name, const vec2& vec) {
+  glUniform2f(GetUniformLocation(name), vec[0], vec[1]);
 }
 
 void OpenGL_Shader::SetUniform(const std::string &name, const vec3& vec) {

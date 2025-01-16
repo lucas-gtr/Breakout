@@ -17,7 +17,7 @@ public:
   
   void SetVelocity(const vec2& new_velocity);
   void InvertVelocity(const int direction);
-  vec2 velocity() const;
+  const vec2& velocity() const;
   
   const float radius() const;
   

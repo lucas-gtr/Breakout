@@ -16,4 +16,14 @@ OpenGL_Texture::OpenGL_Texture(unsigned char* image, int width, int height, int 
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  
+  std::cout << "OpenGL texture (ID=" << m_ID << ") generated!" << '\n';
+
+  glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+OpenGL_Texture::~OpenGL_Texture() {
+  glBindTexture(GL_TEXTURE_2D, 0);
+  std::cout << "Deleting OpenGL texture (ID=" << m_ID << ")..." << '\n';
+  glDeleteTextures(1, &m_ID);
 }

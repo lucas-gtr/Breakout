@@ -22,6 +22,6 @@ TextureData TextureLoader::Load(std::string texture_path) {
 
   stbi_image_free(data);
   
-  std::cout << "Texture from " << texture_path << " (" << width << "x" << height << ") generated!" << '\n';
+  std::cout << "Texture from " << texture_path << " (" << width << "x" << height << ") loaded!" << '\n';
   return texture_data;
 }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <GL/glew.h>
 
 class OpenGL_Texture {
@@ -9,4 +10,6 @@ private:
 public:
   OpenGL_Texture(unsigned char* image, int width, int height, int n_channels);
   const int ID() const { return m_ID; };
+  
+  ~OpenGL_Texture();
 };

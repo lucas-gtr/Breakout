@@ -46,8 +46,8 @@ const std::vector<std::pair<vec2, int>> GameManager::GetBlockList() const {
 
 vec2 GameManager::GetBallAttachedPosition() const {
   vec2 ball_position = m_platform->position();
-  ball_position[0] += (PLATFORM_SIZE[0] / 2) - BALL_RADIUS;
-  ball_position[1] -= 2*BALL_RADIUS;
+  ball_position.x += (PLATFORM_SIZE.x / 2) - BALL_RADIUS;
+  ball_position.y -= 2*BALL_RADIUS;
   
   return ball_position;
 }
@@ -63,29 +63,29 @@ void GameManager::Update(float delta_time) {
     m_ball->SetPosition(GetBallAttachedPosition());
     return;
   }
-  if(m_ball->position()[1] >= m_y_max) {
+  if(m_ball->position().y >= m_y_max) {
     ResetGame();
     return;
   }
   
-  if(m_ball->position()[1] <= 0.0f) {
+  if(m_ball->position().y <= 0.0f) {
     m_ball->InvertVelocity(1);
-    m_ball->SetPosition(vec2(m_ball->position()[0], 0.0f));
+    m_ball->SetPosition(vec2(m_ball->position().x, 0.0f));
   }
   
-  if(m_ball->position()[0] + m_ball->size()[0] >= 1.0f || m_ball->position()[0] <= 0.0f) {
+  if(m_ball->position().x + m_ball->size().x >= 1.0f || m_ball->position().x <= 0.0f) {
     m_ball->InvertVelocity(0);
     vec2 new_pos = m_ball->position();
-    if(m_ball->position()[0] <= 0.0f)
-      new_pos[0] = 0.0f;
+    if(m_ball->position().x <= 0.0f)
+      new_pos.x = 0.0f;
     else
-      new_pos[0] = 1.0f - 2*m_ball->radius();
+      new_pos.x = 1.0f - 2*m_ball->radius();
     m_ball->SetPosition(new_pos);
   }
   
   if(CheckCollisions(m_platform)) {
-    double platform_percentage = -0.5 + (m_ball->position()[0] + m_ball->radius()
-                                - (m_platform->position()[0])) / (m_platform->size()[0]);
+    double platform_percentage = -0.5 + (m_ball->position().x + m_ball->radius()
+                                - (m_platform->position().x)) / (m_platform->size().x);
     
     vec2 new_direction(sin(platform_percentage * PLATFORM_ANGLE_FACTOR),
                        -abs(cos(platform_percentage * PLATFORM_ANGLE_FACTOR)));
@@ -138,10 +138,10 @@ bool GameManager::CheckCollisions(GameObject* other){
   };
   
   if (distance_ball_border.length() <= m_ball->radius()) {
-    if(abs(block_border_position[1]) == half_block_size[1] || dynamic_cast<Platform*>(other)) {
+    if(abs(block_border_position.y) == half_block_size.y || dynamic_cast<Platform*>(other)) {
       BounceBall(1);
     }
-    else if(abs(block_border_position[0]) == half_block_size[0]) {
+    else if(abs(block_border_position.x) == half_block_size.x) {
       BounceBall(0);
     }
     
@@ -160,9 +160,9 @@ void GameManager::ResetGame() {
 }
 
 GameManager::~GameManager() {
+  for(const auto& level : m_level_list) delete level;
   delete m_ball;
   delete m_platform;
-  for(const auto& level : m_level_list) delete level;
   
   std::cout << "Game finished!" << '\n';
 }

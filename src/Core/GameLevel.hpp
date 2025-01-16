@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "Block.h"
+#include "GameObjects/Block.h"
 
 class GameLevel {
 private:

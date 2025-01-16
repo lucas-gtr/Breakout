@@ -1,7 +1,7 @@
 #include <iostream>
-#include "src/Core/GameManager.hpp"
-#include "src/Graphics/OpenGL/OpenGL_Rendering.hpp"
-#include "src/Input/OpenGL_InputManager.hpp"
+#include "Core/GameManager.hpp"
+#include "Graphics/OpenGL/OpenGL_Rendering.hpp"
+#include "Input/OpenGL_InputManager.hpp"
 
 InputInterface* InputManager::m_input_interface = nullptr;
 
@@ -87,7 +87,7 @@ int main(int argc, const char * argv[]) {
   while(is_window_open) {
     game.Update(0.016f);
 
-    renderer.DrawScene();
+    renderer.DrawScene(0.016f);
     is_window_open = renderer.RenderScene();
   }
 
